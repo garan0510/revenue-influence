@@ -1,0 +1,664 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Revenue Influence™ Index Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --slate-dark: #374B69;
+      --ivory: #F0EDE4;
+      --muted-gold: #C3A550;
+      --warm-grey: #6E6458;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--ivory);
+      color: var(--slate-dark);
+    }
+
+    .app-shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    header {
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--muted-gold);
+      padding-bottom: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    header h2 {
+      margin: 4px 0 0;
+      font-size: 1rem;
+      color: var(--warm-grey);
+    }
+
+    .brand-tagline {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--warm-grey);
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .btn-primary {
+      background: var(--muted-gold);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--slate-dark);
+      border: 1px solid var(--slate-dark);
+    }
+
+    .btn-row {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .field-group {
+      margin-bottom: 16px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+    }
+
+    .pill-section {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+    }
+
+    .pill-section h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .pill-section p.pill-subtitle {
+      margin: 0 0 12px;
+      font-size: 0.9rem;
+      color: var(--warm-grey);
+    }
+
+    .question-block {
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #e0e0e0;
+    }
+
+    .question-text {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .options-row label {
+      cursor: pointer;
+    }
+
+    .summary-box {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+
+    .advisor-output {
+      width: 100%;
+      min-height: 200px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      font-family: "Consolas", "SF Mono", monospace;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: var(--warm-grey);
+      margin-top: 8px;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>Revenue Influence™ Index Assessment</h1>
+      <h2>Foundation Edition · Enterprise Maturity Assessment</h2>
+      <div class="brand-tagline">
+        Operationalize Expertise. Monetize Influence.
+      </div>
+    </header>
+
+    <!-- Screen 1: Landing -->
+    <section id="screen-landing" class="screen active">
+      <h3>Welcome to the Revenue Influence™ Index</h3>
+      <p>
+        This assessment evaluates how effectively your organization transforms enterprise expertise into measurable commercial value
+        across five integrated capability pillars: Executive Influence, Enterprise Activation, Revenue Enablement, Customer Influence,
+        and Revenue Intelligence.
+      </p>
+      <p>
+        The Foundation Edition is a comprehensive enterprise maturity assessment. Expect approximately 45–60 minutes to complete.
+      </p>
+      <div class="summary-box">
+        <strong>What you will receive:</strong>
+        <ul>
+          <li>An overall Revenue Influence™ maturity score.</li>
+          <li>Pillar-level insight into strengths and Commercial Friction.</li>
+          <li>A maturity-level classification for your current state.</li>
+        </ul>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goToInfo()">Start Assessment</button>
+      </div>
+    </section>
+
+    <!-- Screen 2: Participant Info -->
+    <section id="screen-info" class="screen">
+      <h3>Participant & Organization Information</h3>
+      <p>
+        Please provide the following information. This will be used to associate your assessment results with your organization and
+        to prepare your executive readout.
+      </p>
+
+      <form id="info-form" onsubmit="beginAssessment(event)">
+        <div class="field-group">
+          <label for="participantName">Name</label>
+          <input type="text" id="participantName" required />
+        </div>
+        <div class="field-group">
+          <label for="participantTitle">Title</label>
+          <input type="text" id="participantTitle" required />
+        </div>
+        <div class="field-group">
+          <label for="companyName">Company</label>
+          <input type="text" id="companyName" required />
+        </div>
+        <div class="field-group">
+          <label for="participantEmail">Email</label>
+          <input type="email" id="participantEmail" required />
+        </div>
+        <div class="field-group">
+          <label for="assessmentDate">Assessment Date</label>
+          <input type="date" id="assessmentDate" />
+        </div>
+
+        <div class="field-group">
+          <label for="companySize">Company Size (optional)</label>
+          <input type="text" id="companySize" placeholder="e.g., 500 employees" />
+        </div>
+        <div class="field-group">
+          <label for="industry">Industry (optional)</label>
+          <input type="text" id="industry" />
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" onclick="goToLanding()">Back</button>
+          <button type="submit" class="btn btn-primary">Begin Assessment</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Screen 3: Full Assessment -->
+    <section id="screen-assessment" class="screen">
+      <h3>Revenue Influence™ Index · Assessment</h3>
+      <p>
+        For each statement, select the response that most accurately reflects your organization’s current state:
+        <strong>Yes</strong>, <strong>Partially</strong>, or <strong>No</strong>.
+      </p>
+
+      <form id="assessment-form" onsubmit="submitAssessment(event)">
+        <div id="pillars-container"></div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" onclick="goToInfo()">Back</button>
+          <button type="submit" class="btn btn-primary">Submit Assessment</button>
+        </div>
+      </form>
+
+      <p class="note">
+        Once submitted, your total Revenue Influence™ score and maturity level will be displayed, along with an advisor-ready summary.
+      </p>
+    </section>
+
+    <!-- Screen 4: Thank-You & Results -->
+    <section id="screen-thankyou" class="screen">
+      <h3>Thank You · Assessment Complete</h3>
+      <p>
+        Your Revenue Influence™ Index assessment has been submitted. Below is your summary score and a structured output you can save
+        or export as a PDF.
+      </p>
+
+      <div class="summary-box">
+        <p><strong>Participant:</strong> <span id="summary-participant"></span></p>
+        <p><strong>Company:</strong> <span id="summary-company"></span></p>
+        <p><strong>Email:</strong> <span id="summary-email"></span></p>
+        <p><strong>Date:</strong> <span id="summary-date"></span></p>
+        <hr />
+        <p><strong>Total Revenue Influence™ Score:</strong> <span id="summary-score"></span></p>
+        <p><strong>Maturity Level:</strong> <span id="summary-maturity"></span></p>
+      </div>
+
+      <p>
+        To save this page as a PDF, use your browser’s <strong>Print</strong> function and select <strong>Save as PDF</strong>.
+      </p>
+
+      <h4>Advisor Copy (for Joseph)</h4>
+      <p>
+        The block below contains a structured representation of this assessment that you can copy and paste into your executive
+        readout workflow.
+      </p>
+      <textarea id="advisor-output" class="advisor-output" readonly></textarea>
+
+      <p class="note">
+        You can paste this directly into your Revenue Influence™ Readout / Analysis Engine prompt to generate a non prospect facing
+        executive narrative.
+      </p>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToLanding()">Start New Assessment</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let participantData = {};
+
+    const pillars = [
+      {
+        id: "pillar1",
+        title: "Pillar One: Executive Influence",
+        subtitle:
+          "Measures how effectively executive leadership activates its expertise to strengthen organizational credibility, influence strategic buying decisions, and create measurable enterprise value.",
+        questions: [
+          // Accelerators
+          { id: "q_ei_acc_1", type: "accelerator", text: "Executive leadership is recognized as a credible source of expertise within the markets it serves." },
+          { id: "q_ei_acc_2", type: "accelerator", text: "Executives consistently communicate insights that educate customers rather than simply promote products or services." },
+          { id: "q_ei_acc_3", type: "accelerator", text: "Executive expertise is intentionally aligned with the organization's strategic commercial priorities." },
+          { id: "q_ei_acc_4", type: "accelerator", text: "Leadership actively contributes to enterprise thought leadership, industry dialogue, and customer education." },
+          { id: "q_ei_acc_5", type: "accelerator", text: "Executive expertise is leveraged throughout the buying journey to strengthen credibility and buyer confidence." },
+          { id: "q_ei_acc_6", type: "accelerator", text: "Executive perspectives are consistently shared across the enterprise to improve organizational learning and decision-making." },
+          { id: "q_ei_acc_7", type: "accelerator", text: "Leadership models Revenue Influence as an enterprise capability rather than a marketing initiative." },
+          { id: "q_ei_acc_8", type: "accelerator", text: "Executive Influence is intentionally measured and continuously improved." },
+          // Friction
+          { id: "q_ei_fric_1", type: "friction", text: "Executive expertise remains largely internal and is rarely visible to customers or the marketplace." },
+          { id: "q_ei_fric_2", type: "friction", text: "Leadership communications primarily promote products or corporate news rather than educate customers." },
+          { id: "q_ei_fric_3", type: "friction", text: "Executive participation in commercial influence activities is inconsistent or reactive." },
+          { id: "q_ei_fric_4", type: "friction", text: "Individual executives communicate independent viewpoints that are not aligned with enterprise strategy." },
+          { id: "q_ei_fric_5", type: "friction", text: "Sales and customer-facing teams rarely leverage executive expertise during strategic buying opportunities." },
+          { id: "q_ei_fric_6", type: "friction", text: "Executive knowledge is not systematically captured or shared across the organization." },
+          { id: "q_ei_fric_7", type: "friction", text: "Revenue Influence is viewed primarily as a Marketing responsibility rather than an executive leadership responsibility." },
+          { id: "q_ei_fric_8", type: "friction", text: "Executive Influence activities are rarely evaluated for their commercial impact." }
+        ]
+      },
+      {
+        id: "pillar2",
+        title: "Pillar Two: Enterprise Activation",
+        subtitle:
+          "Measures how effectively an organization captures, shares, governs, and operationalizes enterprise expertise across the business.",
+        questions: [
+          // Accelerators
+          { id: "q_ea_acc_1", type: "accelerator", text: "Enterprise expertise is intentionally captured and made accessible across the organization." },
+          { id: "q_ea_acc_2", type: "accelerator", text: "Cross-functional collaboration enables expertise to be shared effectively between departments." },
+          { id: "q_ea_acc_3", type: "accelerator", text: "Subject matter experts actively contribute to organizational learning and commercial initiatives." },
+          { id: "q_ea_acc_4", type: "accelerator", text: "Best practices are consistently documented and operationalized throughout the enterprise." },
+          { id: "q_ea_acc_5", type: "accelerator", text: "Enterprise expertise is intentionally incorporated into onboarding, learning, and employee development programs." },
+          { id: "q_ea_acc_6", type: "accelerator", text: "Organizational knowledge is regularly updated to reflect evolving customer needs, market conditions, and industry developments." },
+          { id: "q_ea_acc_7", type: "accelerator", text: "Leadership actively encourages knowledge sharing as a strategic enterprise capability." },
+          { id: "q_ea_acc_8", type: "accelerator", text: "Enterprise expertise is recognized as a measurable organizational asset that contributes to long-term commercial performance." },
+          // Friction
+          { id: "q_ea_fric_1", type: "friction", text: "Critical expertise remains isolated within individuals or departments rather than shared across the enterprise." },
+          { id: "q_ea_fric_2", type: "friction", text: "Organizational knowledge is inconsistently documented or difficult for employees to access." },
+          { id: "q_ea_fric_3", type: "friction", text: "Departments operate independently with limited collaboration or knowledge sharing." },
+          { id: "q_ea_fric_4", type: "friction", text: "Subject matter expertise is utilized reactively rather than through an intentional enterprise strategy." },
+          { id: "q_ea_fric_5", type: "friction", text: "Valuable customer, market, or operational insights are rarely transformed into reusable organizational knowledge." },
+          { id: "q_ea_fric_6", type: "friction", text: "The organization relies heavily on individual experience rather than repeatable enterprise capabilities." },
+          { id: "q_ea_fric_7", type: "friction", text: "Knowledge sharing depends primarily on personal relationships instead of established organizational processes." },
+          { id: "q_ea_fric_8", type: "friction", text: "Enterprise expertise is viewed as an informal resource rather than a strategic organizational asset." }
+        ]
+      },
+      {
+        id: "pillar3",
+        title: "Pillar Three: Revenue Enablement",
+        subtitle:
+          "Measures how effectively an organization operationalizes enterprise expertise throughout the buying journey to strengthen buyer confidence, improve commercial performance, and create enterprise value.",
+        questions: [
+          // Accelerators
+          { id: "q_re_acc_1", type: "accelerator", text: "Sales consistently incorporates enterprise expertise into customer conversations and strategic opportunities." },
+          { id: "q_re_acc_2", type: "accelerator", text: "Marketing systematically transforms enterprise expertise into educational content aligned with buyer needs throughout the customer journey." },
+          { id: "q_re_acc_3", type: "accelerator", text: "Enterprise expertise is intentionally aligned with strategic commercial priorities and measurable revenue objectives." },
+          { id: "q_re_acc_4", type: "accelerator", text: "Sales and Marketing present a unified enterprise point of view built upon organizational expertise rather than product promotion." },
+          { id: "q_re_acc_5", type: "accelerator", text: "Customer success stories are intentionally transformed into reusable enterprise expertise that strengthens buyer confidence." },
+          { id: "q_re_acc_6", type: "accelerator", text: "Subject matter experts are intentionally integrated into strategic sales opportunities where their expertise can influence commercial outcomes." },
+          { id: "q_re_acc_7", type: "accelerator", text: "Revenue Influence initiatives are measured against commercial outcomes, including pipeline influence, buyer engagement, and revenue contribution." },
+          { id: "q_re_acc_8", type: "accelerator", text: "Enterprise expertise is recognized and managed as a measurable commercial asset." },
+          // Friction
+          { id: "q_re_fric_1", type: "friction", text: "Sales develops independent messaging because enterprise expertise has not been operationalized across the organization." },
+          { id: "q_re_fric_2", type: "friction", text: "Marketing activities are disconnected from enterprise expertise and primarily emphasize products, services, or promotional messaging." },
+          { id: "q_re_fric_3", type: "friction", text: "Enterprise expertise rarely influences customer conversations during strategic buying decisions." },
+          { id: "q_re_fric_4", type: "friction", text: "Commercial messaging differs significantly across departments, creating inconsistent buyer experiences." },
+          { id: "q_re_fric_5", type: "friction", text: "Subject matter experts participate inconsistently and only when requested, rather than through a defined Revenue Influence strategy." },
+          { id: "q_re_fric_6", type: "friction", text: "Customer success stories remain isolated within individual teams and are not operationalized across the enterprise." },
+          { id: "q_re_fric_7", type: "friction", text: "Revenue Influence activities are measured primarily by marketing engagement metrics rather than commercial impact." },
+          { id: "q_re_fric_8", type: "friction", text: "Enterprise expertise is treated as an informal organizational resource rather than a strategic commercial asset." }
+        ]
+      },
+      {
+        id: "pillar4",
+        title: "Pillar Four: Customer Influence",
+        subtitle:
+          "Measures how effectively an organization transforms customer knowledge into enterprise expertise that strengthens relationships, improves commercial performance, and creates enterprise value.",
+        questions: [
+          // Accelerators
+          { id: "q_ci_acc_1", type: "accelerator", text: "Customer-facing teams systematically capture customer insights and transform them into reusable enterprise expertise." },
+          { id: "q_ci_acc_2", type: "accelerator", text: "Customer feedback is intentionally shared across Sales, Marketing, Product, Customer Success, and Executive Leadership to improve enterprise decision-making." },
+          { id: "q_ci_acc_3", type: "accelerator", text: "Customer success stories are consistently transformed into commercial assets that strengthen buyer confidence and organizational credibility." },
+          { id: "q_ci_acc_4", type: "accelerator", text: "Customer experiences directly influence the development of educational content, enterprise expertise, and commercial messaging." },
+          { id: "q_ci_acc_5", type: "accelerator", text: "Customer expertise is intentionally incorporated into executive presentations, strategic sales opportunities, and industry education." },
+          { id: "q_ci_acc_6", type: "accelerator", text: "Customer advocacy programs actively strengthen organizational credibility, market influence, and commercial performance." },
+          { id: "q_ci_acc_7", type: "accelerator", text: "Customer communities create opportunities for continuous knowledge sharing that expands enterprise expertise." },
+          { id: "q_ci_acc_8", type: "accelerator", text: "Customer knowledge is recognized and managed as a strategic enterprise asset that continuously improves commercial performance." },
+          // Friction
+          { id: "q_ci_fric_1", type: "friction", text: "Customer insights remain isolated within customer-facing teams and are rarely operationalized across the enterprise." },
+          { id: "q_ci_fric_2", type: "friction", text: "Customer feedback is collected but seldom influences strategic commercial or operational decisions." },
+          { id: "q_ci_fric_3", type: "friction", text: "Customer success stories are inconsistently documented or remain inaccessible to commercial teams." },
+          { id: "q_ci_fric_4", type: "friction", text: "Sales, Marketing, Product, and Customer Success operate independently with limited sharing of customer knowledge." },
+          { id: "q_ci_fric_5", type: "friction", text: "Customer advocacy is managed informally rather than through a defined Revenue Influence strategy." },
+          { id: "q_ci_fric_6", type: "friction", text: "Lessons learned from customer engagements are rarely converted into reusable enterprise expertise." },
+          { id: "q_ci_fric_7", type: "friction", text: "Customer knowledge is viewed as an operational resource rather than a strategic commercial asset." },
+          { id: "q_ci_fric_8", type: "friction", text: "The organization lacks a repeatable process for transforming customer experience into measurable commercial advantage." }
+        ]
+      },
+      {
+        id: "pillar5",
+        title: "Pillar Five: Revenue Intelligence",
+        subtitle:
+          "Measures how effectively an organization evaluates, governs, and continuously improves the commercial impact of enterprise expertise.",
+        questions: [
+          // Accelerators
+          { id: "q_ri_acc_1", type: "accelerator", text: "The organization has established measurable Revenue Influence objectives aligned with strategic business priorities." },
+          { id: "q_ri_acc_2", type: "accelerator", text: "Executive leadership regularly reviews Revenue Influence performance as part of enterprise planning and governance." },
+          { id: "q_ri_acc_3", type: "accelerator", text: "Enterprise expertise is measured for its contribution to buyer engagement, commercial performance, and enterprise value." },
+          { id: "q_ri_acc_4", type: "accelerator", text: "Revenue Influence initiatives are supported by meaningful performance metrics, dashboards, and executive reporting." },
+          { id: "q_ri_acc_5", type: "accelerator", text: "Commercial decisions are informed by measurable data, customer insight, and expertise attribution rather than assumptions." },
+          { id: "q_ri_acc_6", type: "accelerator", text: "Revenue Influence performance is reviewed regularly to identify Commercial Friction and opportunities for continuous improvement." },
+          { id: "q_ri_acc_7", type: "accelerator", text: "Organizational learning is systematically incorporated into future Revenue Influence strategies and operating priorities." },
+          { id: "q_ri_acc_8", type: "accelerator", text: "Continuous improvement is embedded within executive management processes and the Revenue Influence Operating System™." },
+          // Friction
+          { id: "q_ri_fric_1", type: "friction", text: "Revenue Influence activities are rarely measured beyond basic marketing or sales activity metrics." },
+          { id: "q_ri_fric_2", type: "friction", text: "Executive leadership has limited visibility into how enterprise expertise influences commercial performance." },
+          { id: "q_ri_fric_3", type: "friction", text: "The organization lacks meaningful attribution between enterprise expertise and measurable business outcomes." },
+          { id: "q_ri_fric_4", type: "friction", text: "Revenue Influence performance is reviewed inconsistently or only after commercial challenges arise." },
+          { id: "q_ri_fric_5", type: "friction", text: "Dashboards emphasize activity rather than commercial impact or enterprise value creation." },
+          { id: "q_ri_fric_6", type: "friction", text: "Improvement initiatives are launched without measurable success criteria or executive accountability." },
+          { id: "q_ri_fric_7", type: "friction", text: "Commercial Friction is identified informally rather than through a structured management process." },
+          { id: "q_ri_fric_8", type: "friction", text: "Revenue Influence is viewed as a series of initiatives rather than an enterprise capability requiring continuous governance and optimization." }
+        ]
+      }
+    ];
+
+    function renderPillars() {
+      const container = document.getElementById("pillars-container");
+      container.innerHTML = "";
+
+      pillars.forEach((pillar, index) => {
+        const section = document.createElement("div");
+        section.className = "pill-section";
+
+        const h4 = document.createElement("h4");
+        h4.textContent = pillar.title;
+        section.appendChild(h4);
+
+        const subtitle = document.createElement("p");
+        subtitle.className = "pill-subtitle";
+        subtitle.textContent = pillar.subtitle;
+        section.appendChild(subtitle);
+
+        const accelHeader = document.createElement("p");
+        accelHeader.innerHTML = "<strong>Revenue Accelerators (+)</strong>";
+        section.appendChild(accelHeader);
+
+        pillar.questions
+          .filter((q) => q.type === "accelerator")
+          .forEach((q) => {
+            const qb = document.createElement("div");
+            qb.className = "question-block";
+
+            const qt = document.createElement("div");
+            qt.className = "question-text";
+            qt.textContent = q.text;
+            qb.appendChild(qt);
+
+            const or = document.createElement("div");
+            or.className = "options-row";
+
+            const yesLabel = document.createElement("label");
+            yesLabel.innerHTML = `<input type="radio" name="${q.id}" value="yes" data-type="accelerator" required /> Yes (+3)`;
+            or.appendChild(yesLabel);
+
+            const partialLabel = document.createElement("label");
+            partialLabel.innerHTML = `<input type="radio" name="${q.id}" value="partial" data-type="accelerator" /> Partially (+1)`;
+            or.appendChild(partialLabel);
+
+            const noLabel = document.createElement("label");
+            noLabel.innerHTML = `<input type="radio" name="${q.id}" value="no" data-type="accelerator" /> No (0)`;
+            or.appendChild(noLabel);
+
+            qb.appendChild(or);
+            section.appendChild(qb);
+          });
+
+        const fricHeader = document.createElement("p");
+        fricHeader.innerHTML = "<strong>Commercial Friction (−)</strong>";
+        section.appendChild(fricHeader);
+
+        pillar.questions
+          .filter((q) => q.type === "friction")
+          .forEach((q) => {
+            const qb = document.createElement("div");
+            qb.className = "question-block";
+
+            const qt = document.createElement("div");
+            qt.className = "question-text";
+            qt.textContent = q.text;
+            qb.appendChild(qt);
+
+            const or = document.createElement("div");
+            or.className = "options-row";
+
+            const yesLabel = document.createElement("label");
+            yesLabel.innerHTML = `<input type="radio" name="${q.id}" value="yes" data-type="friction" required /> Yes (−3)`;
+            or.appendChild(yesLabel);
+
+            const partialLabel = document.createElement("label");
+            partialLabel.innerHTML = `<input type="radio" name="${q.id}" value="partial" data-type="friction" /> Partially (−1)`;
+            or.appendChild(partialLabel);
+
+            const noLabel = document.createElement("label");
+            noLabel.innerHTML = `<input type="radio" name="${q.id}" value="no" data-type="friction" /> No (0)`;
+            or.appendChild(noLabel);
+
+            qb.appendChild(or);
+            section.appendChild(qb);
+          });
+
+        container.appendChild(section);
+      });
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goToLanding() {
+      showScreen("screen-landing");
+    }
+
+    function goToInfo() {
+      showScreen("screen-info");
+    }
+
+    function beginAssessment(event) {
+      event.preventDefault();
+      const name = document.getElementById("participantName").value.trim();
+      const title = document.getElementById("participantTitle").value.trim();
+      const company = document.getElementById("companyName").value.trim();
+      const email = document.getElementById("participantEmail").value.trim();
+      const date = document.getElementById("assessmentDate").value || new Date().toISOString().slice(0, 10);
+      const companySize = document.getElementById("companySize").value.trim();
+      const industry = document.getElementById("industry").value.trim();
+
+      participantData = {
+        name,
+        title,
+        company,
+        email,
+        date,
+        companySize,
+        industry
+      };
+
+      renderPillars();
+      showScreen("screen-assessment");
+    }
+
+    function submitAssessment(event) {
+      event.preventDefault();
+
+      let totalScore = 0;
+      const responses = [];
+
+      const inputs = document.querySelectorAll("#assessment-form input[type='radio']:checked");
+      inputs.forEach((input) => {
+        const type = input.dataset.type;
+        const name = input.name;
+        const value = input.value;
+
+        let score = 0;
+        if (type === "accelerator") {
+          if (value === "yes") score = 3;
+          else if (value === "partial") score = 1;
+          else score = 0;
+        } else if (type === "friction") {
+          if (value === "yes") score = -3;
+          else if (value === "partial") score = -1;
+          else score = 0;
+        }
+
+        totalScore += score;
+
+        responses.push({
+          questionId: name,
+          type,
+          response: value,
+          score
+        });
+      });
+
+      const maturityLevel = deriveMaturityLevel(totalScore);
+
+      document.getElementById("summary-participant").textContent =
+        participantData.name + " · " + participantData.title;
+      document.getElementById("summary-company").textContent = participantData.company;
+      document.getElementById("summary-email").textContent = participantData.email;
+      document.getElementById("summary-date").textContent = participantData.date;
+      document.getElementById("summary-score").textContent = totalScore;
+      document.getElementById("summary-maturity").textContent = maturityLevel;
+
+      const advisorPayload = {
+        participant: participantData,
+        totalScore,
+        maturityLevel,
+        responses
+      };
+
+      document.getElementById("advisor-output").value = JSON.stringify(advisorPayload, null, 2);
+
+      showScreen("screen-thankyou");
+    }
+
+    function deriveMaturityLevel(score) {
+      // Full diagnostic range: -120 to +120
+      // Normalize to 0–100 and reuse your five maturity levels.
+      const minScore = -120;
+      const maxScore = 120;
+      const normalized = ((score - minScore) / (maxScore - minScore)) * 100;
+
+      if (normalized <= 36) return "Individual";
+      if (normalized <= 52) return "Emerging";
+      if (normalized <= 68) return "Operational";
+      if (normalized <= 84) return "Integrated";
+      return "Institutionalized";
+    }
+  </script>
+</body>
+</html>
